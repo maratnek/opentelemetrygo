@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = ".;proto";
+
+service TransService {
+  rpc Create(CreateRequest) returns (CreateResponse) {}
+}
+
+message CreateRequest {
+  string message = 1;
+  string user_id = 2;
+}
+
+message CreateResponse {
+  string message = 1;
+  string transaction_id = 2;
+}

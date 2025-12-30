@@ -1,0 +1,32 @@
+services:
+  server:
+    container_name: server-otel
+    image: golang:1.23-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: ["./bin/server"]
+    ports:
+      - "50051:50051"
+    depends_on:
+      - jaeger
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=jaeger:4317
+    # networks:
+      # - otel-net
+
+  jaeger:
+    container_name: jaeger
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "16686:16686"   # UI
+      - "4317:4317"     # OTLP gRPC
+      - "4318:4318"     # OTLP HTTP
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    # networks:
+      # - otel-net
+
+# networks:
+  # otel-net:
+    # driver: bridge
