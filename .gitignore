@@ -1,1 +1,3 @@
 bin/server
+proto/trans.pb.go
+proto/trans_grpc.pb.go
