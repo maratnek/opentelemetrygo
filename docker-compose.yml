@@ -12,8 +12,8 @@ services:
       - jaeger
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT=jaeger:4317
-    # networks:
-      # - otel-net
+    networks:
+      - otel-net
 
   jaeger:
     container_name: jaeger
@@ -24,9 +24,9 @@ services:
       - "4318:4318"     # OTLP HTTP
     environment:
       - COLLECTOR_OTLP_ENABLED=true
-    # networks:
-      # - otel-net
+    networks:
+      - otel-net
 
-# networks:
-  # otel-net:
-    # driver: bridge
+networks:
+  otel-net:
+    driver: bridge

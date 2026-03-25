@@ -34,11 +34,11 @@ logs:
 
 # Запуск всего стека (сервер + Jaeger)
 up:
-	docker compose up -d
+	docker-compose up -d
 
 # Остановка стека
 down:
-	docker compose down
+	docker-compose down
 
 # Запуск интеграционных тестов (сервер должен быть запущен через compose-up)
 test:
@@ -49,5 +49,5 @@ watch:
 
 # Очистка
 clean:
-	docker compose down -v
+	docker-compose down -v
 	go clean
